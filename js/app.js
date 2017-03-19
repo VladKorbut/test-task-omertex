@@ -45,9 +45,12 @@ var Item = React.createClass({
 	render:function(){
 		var info = this.props.data;
 		var visible = this.state.visible;
+    var divStyle = {
+      backgroundImage: 'url(' + info.img + ')',
+    }
         return(
         	<a onClick={this.readmoreClick} className='thumbnail'>
-        	  <img src={info.img} />
+            <div className={'img ' + (!visible ? '': 'none')} style={divStyle}></div>
         	  <div className='caption'>
 		          <p><strong>Название: </strong>{info.name}</p>
 		          <p><strong>Цена: </strong>{info.price} $</p>
@@ -65,7 +68,7 @@ var Goods = React.createClass({
     var newsTemplate = data.map(function(item, index) {
       if(item.name.toLowerCase().indexOf('')+1){
         return (
-        	<div className='col-xs-6 col-md-4' key={index}>
+        	<div className='col-xs-12 col-sm-6 col-md-4' key={index}>
          		<Item data={item} />
          	</div>
         )
