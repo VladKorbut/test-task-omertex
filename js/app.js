@@ -23,31 +23,6 @@ var goods = [
   }
 ];
 
-var Input = React.createClass({
-  getInitialState: function() { 
-    return {
-      value: ''
-    };
-  },
-  onChangeState: function(event){
-  	console.log(event.target.value, ReactDOM.findDOMNode(this.refs.searchInput).value);
-  	this.setState({value: event.target.value});
-  },
-  render: function() {
-    return (
-      <div>
-	      <input
-	      	className='form-control'
-	      	placeholder='введите значение'
-	      	value={this.state.value}
-	      	ref={'searchInput'}
-	      	onChange={this.onChangeState}
-	      />
-	  </div>
-    );
-  }
-});
-
 var Item = React.createClass({
 	propTypes: {
 	    data: React.PropTypes.shape({
@@ -83,8 +58,6 @@ var Item = React.createClass({
         )
 	}
 })
-
-
 
 var Goods = React.createClass({
   render: function() {
