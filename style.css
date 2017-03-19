@@ -2,6 +2,7 @@
 	display: none !important;
 }
 a.thumbnail:hover{
+	cursor: pointer;
 	text-decoration: none;
 }
 .thumbnail .img{
@@ -11,5 +12,5 @@ a.thumbnail:hover{
 	background-position: center;
 }
 .thumbnail{
-	min-height: 225px;
+	min-height: 200px;
 }
