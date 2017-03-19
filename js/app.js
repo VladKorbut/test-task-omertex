@@ -89,7 +89,6 @@ var App = React.createClass({
   filterList: function(event){
     var updatedList = this.state.initialItems;
     updatedList = updatedList.filter(function(item){
-      console.log(item)
       return item.name.toLowerCase().search(
         event.target.value.toLowerCase()) !== -1;
     });
