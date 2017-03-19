@@ -40,7 +40,7 @@ var Input = React.createClass({
 	      	className='form-control'
 	      	placeholder='введите значение'
 	      	value={this.state.value}
-	      	ref='searchInput'
+	      	ref={'searchInput'}
 	      	onChange={this.onChangeState}
 	      />
 	  </div>
@@ -48,7 +48,7 @@ var Input = React.createClass({
   }
 });
 
-var Item =React.createClass({
+var Item = React.createClass({
 	propTypes: {
 	    data: React.PropTypes.shape({
 	      name: React.PropTypes.string.isRequired,
@@ -72,7 +72,7 @@ var Item =React.createClass({
 		var visible = this.state.visible;
         return(
         	<a onClick={this.readmoreClick} className='thumbnail'>
-        	  <img src={info.img} alt="..." />
+        	  <img src={info.img} />
         	  <div className='caption'>
 		          <p><strong>Название: </strong>{info.name}</p>
 		          <p><strong>Цена: </strong>{info.price} $</p>
@@ -84,15 +84,19 @@ var Item =React.createClass({
 	}
 })
 
+
+
 var Goods = React.createClass({
   render: function() {
     var data = this.props.data;
     var newsTemplate = data.map(function(item, index) {
-      return (
-      	<div className='col-xs-6 col-md-4' key={index}>
-       		<Item data={item} />
-       	</div>
-      )
+      if(item.name.toLowerCase().indexOf('')+1){
+        return (
+        	<div className='col-xs-6 col-md-4' key={index}>
+         		<Item data={item} />
+         	</div>
+        )
+      }
     })
     return (
       <div className="news">
@@ -106,12 +110,36 @@ var Goods = React.createClass({
 });
 	
 var App = React.createClass({
+  filterList: function(event){
+    var updatedList = this.state.initialItems;
+    updatedList = updatedList.filter(function(item){
+      console.log(item)
+      return item.name.toLowerCase().search(
+        event.target.value.toLowerCase()) !== -1;
+    });
+    this.setState({items: updatedList});
+  },
+  getInitialState: function(){
+     return {
+       initialItems: goods,
+       items: []
+     }
+  },
+  componentWillMount: function(){
+    this.setState({items: this.state.initialItems})
+  },
   render: function() {
     return (
       <div className="container">
-      	<Input />
       	<h2>Каталог товаров</h2>
-        <Goods data={goods} />
+        <input
+          className='form-control'
+          placeholder='Поиск'
+          value={this.state.value}
+          ref={'searchInput'}
+          onChange={this.filterList}
+        />
+        <Goods data={this.state.items} />
       </div>
     );
   }
