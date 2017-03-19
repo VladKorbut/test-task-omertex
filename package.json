@@ -1,0 +1,19 @@
+{
+  "name": "react-test",
+  "version": "1.0.0",
+  "description": "Test task omertex",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Vladislav Korbut",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.15.2"
+  },
+  "dependencies": {
+    "babel-plugin-transform-react-jsx": "^6.23.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
